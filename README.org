@@ -26,7 +26,7 @@ There are a total of three dependencies needed for the installation to be done. 
  - libxft-dev
 
 Those dependencies are able to be installed during the installation using this script.
-=Hence, they are optional when running the script.=
+Hence, they are optional when running the script - but needed for dmenu to work.
 
 * THE SCRIPT
 #+begin_src shell
@@ -53,7 +53,8 @@ Those dependencies are able to be installed during the installation using this s
 #+end_src
 
 ** CONFIRMATION ON INSTALLING DEPENDENCIES
-As previous mentioned, three dependencies are needed for dmenu to work. Make sure to answer yes to install them, unless you all ready have them installed, or want to install them manualy. (~Installing dependecies need sudo~)
+As previous mentioned, three dependencies are needed for dmenu to work. Make sure to answer yes to install them, unless you all ready have them installed, or want to install them manualy. 
+=Installing dependecies need sudo=
 
 #+begin_src shell
         # CONFIRM INSTALLATION OF DEPENDENCIES
@@ -75,7 +76,8 @@ git clone https://git.suckless.org/dmenu $HOME/.config/dmenu
 #+end_src
 
 ** INSTALL DMENU
-To install dmenu, you need to =make install= inside dmenu folder. (~This part need sudo~)
+To install dmenu, you need to =make install= inside dmenu folder. 
+=This part need sudo=
 
 #+begin_src shell
         # INSTALLING DMENU
@@ -94,4 +96,4 @@ echo 'I suggest making a keybinding'
 #+end_src
 
 * POST INSTALL
-Once dmenu has been installed, I suggest you make a keybinding to launch 'dmenu_run' for easy access.
+Once dmenu has been installed, I suggest you make a keybinding to launch =dmenu_run= for easy access.
