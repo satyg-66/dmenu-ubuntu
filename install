@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+#
+#                        ,d
+#                        88
+# ,adPPYba, ,adPPYYba, MM88MMM 8b       d8  ,adPPYb,d8
+# I8[    "" ""     `Y8   88    `8b     d8' a8"    `Y88
+#  `"Y8ba,  ,adPPPPP88   88     `8b   d8'  8b       88
+# aa    ]8I 88,    ,88   88,     `8b,d8'   "8a,   ,d88
+# `"YbbdP"' `"8bbdP"Y8   "Y888     Y88'     `"YbbdP"Y8
+#                                  d8'      aa,    ,88
+#                                 d8'        "Y8bbdP"
+
+
+# AUTHOR: Jonas Ingemarsson
+# DESC: Main configuration for Doom-Emacs
+# WARNING: This config file will overrite other config files, use with caution!
+# DEPENDENCIES: libx11-dev, libxinerama-dev, libxft-dev
+
+        # CONFIRM INSTALLATION OF DEPENDENCIES
+read -p '[+] Do you want to install depencencies before installing dmenu? (Y/N): ' yn
+answer=$(echo $yn | tr '[:lower:]' '[:upper:]')
+if [ "$answer" = 'Y' ] ; then
+    echo '### INSTALLING DEPENDENCIES ###'
+    sudo apt install libx11-dev libxinerama-dev libxft-dev -y
+fi
+
+        # CLONING DMENU REPOSITORY
+echo '### CLONING DMENU REPOSITORY ###'
+git clone https://git.suckless.org/dmenu $HOME/.config/dmenu
+
+        # INSTALLING DMENU
+echo '### INSTALLING DMENU ###'
+cd $HOME/.config/dmenu
+sudo make clean install
+
+        # FINNISHING TOUCH
+echo '### INSTALLATION COMPLETE ###'
+echo 'To run dmenu, type dmenu_run in a terminal.'
+echo 'I suggest making a keybinding'

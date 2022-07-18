@@ -1,0 +1,97 @@
+#+TITLE: Install dmenu onto debian based system
+#+PROPERTY: header-args :tangle install
+#+AUTO_TANGLE: t
+#+AUTHOR: Jonas Ingemarsson
+#+STARTUP: showeverything
+
+
+* TABLE OF CONTENTS :toc:
+- [[#about][ABOUT]]
+  - [[#dependencies][DEPENDENCIES]]
+- [[#the-script][THE SCRIPT]]
+  - [[#confirmation-on-installing-dependencies][CONFIRMATION ON INSTALLING DEPENDENCIES]]
+  - [[#download-dmenu][DOWNLOAD DMENU]]
+  - [[#install-dmenu][INSTALL DMENU]]
+  - [[#finnishing-touch][FINNISHING TOUCH]]
+- [[#post-install][POST INSTALL]]
+
+* ABOUT
+This is a script for installing dmenu on a debian based system, e.g., Ubuntu
+
+** DEPENDENCIES
+There are a total of three dependencies needed for the installation to be done. Those are:
+
+ - libx11-dev
+ - libxinerama-dev
+ - libxft-dev
+
+Those dependencies are able to be installed during the installation using this script.
+=Hence, they are optional when running the script.=
+
+* THE SCRIPT
+#+begin_src shell
+#!/bin/bash
+#
+#
+#                        ,d
+#                        88
+# ,adPPYba, ,adPPYYba, MM88MMM 8b       d8  ,adPPYb,d8
+# I8[    "" ""     `Y8   88    `8b     d8' a8"    `Y88
+#  `"Y8ba,  ,adPPPPP88   88     `8b   d8'  8b       88
+# aa    ]8I 88,    ,88   88,     `8b,d8'   "8a,   ,d88
+# `"YbbdP"' `"8bbdP"Y8   "Y888     Y88'     `"YbbdP"Y8
+#                                  d8'      aa,    ,88
+#                                 d8'        "Y8bbdP"
+
+
+# AUTHOR: Jonas Ingemarsson
+# DESC: Main configuration for Doom-Emacs
+# WARNING: This config file will overrite other config files, use with caution!
+# DEPENDENCIES: libx11-dev, libxinerama-dev, libxft-dev
+
+
+#+end_src
+
+** CONFIRMATION ON INSTALLING DEPENDENCIES
+As previous mentioned, three dependencies are needed for dmenu to work. Make sure to answer yes to install them, unless you all ready have them installed, or want to install them manualy. (~Installing dependecies need sudo~)
+
+#+begin_src shell
+        # CONFIRM INSTALLATION OF DEPENDENCIES
+read -p '[+] Do you want to install depencencies before installing dmenu? (Y/N): ' yn
+answer=$(echo $yn | tr '[:lower:]' '[:upper:]')
+if [ "$answer" = 'Y' ] ; then
+    echo '### INSTALLING DEPENDENCIES ###'
+    sudo apt install libx11-dev libxinerama-dev libxft-dev -y
+fi
+#+end_src
+
+** DOWNLOAD DMENU
+Git clone dmenu from suckless repository
+
+#+begin_src shell
+        # CLONING DMENU REPOSITORY
+echo '### CLONING DMENU REPOSITORY ###'
+git clone https://git.suckless.org/dmenu $HOME/.config/dmenu
+#+end_src
+
+** INSTALL DMENU
+To install dmenu, you need to =make install= inside dmenu folder. (~This part need sudo~)
+
+#+begin_src shell
+        # INSTALLING DMENU
+echo '### INSTALLING DMENU ###'
+cd $HOME/.config/dmenu
+sudo make clean install
+#+end_src
+
+** FINNISHING TOUCH
+
+#+begin_src shell
+        # FINNISHING TOUCH
+echo '### INSTALLATION COMPLETE ###'
+echo 'To run dmenu, type dmenu_run in a terminal.'
+echo 'I suggest making a keybinding'
+#+end_src
+
+* POST INSTALL
+Once dmenu has been installed, I suggest you make a keybinding to launch 'dmenu_run' for easy access.
